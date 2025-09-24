@@ -123,3 +123,14 @@ int mdio_close(const int id) {
     }
     return 0;
 }
+
+int mdio_debug() {
+    struct entry *node = LIST_FIRST(&list_head);
+    while (node) {
+        printf("interface:%s phyId:%d socket fd:%d\n",
+               node->interface,
+               node->id,
+               node->sock);
+        node = LIST_NEXT(node, entries);
+    };
+}

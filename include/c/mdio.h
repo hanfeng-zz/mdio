@@ -23,6 +23,8 @@ int mdio_read(const int id, const uint16_t addr, uint16_t *val);
 int mdio_write(const int id, const uint16_t addr, const uint16_t val);
 
 int mdio_close(const int id);
+
+int mdio_debug();
 #ifdef __cplusplus
 }
 #endif
