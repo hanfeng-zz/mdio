@@ -18,7 +18,7 @@
 #include <linux/mii.h>
 #include <linux/sockios.h>
 
-int MdioDriver::open(const std::string &interface, const int &id) {
+int MdioDriver::open(const std::string &interface, const uint16_t &id) {
     int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) {
         return -errno;

@@ -16,15 +16,15 @@ extern "C" {
 #include <stdint.h>
 
 
-int mdio_open(const char *const interface, const int id);
+int mdio_open(const char *const interface, const uint16_t id);
 
-int mdio_read(const int id, const uint16_t addr, uint16_t *val);
+int mdio_read(const uint16_t id, const uint16_t addr, uint16_t *val);
 
-int mdio_write(const int id, const uint16_t addr, const uint16_t val);
+int mdio_write(const uint16_t id, const uint16_t addr, const uint16_t val);
 
-int mdio_close(const int id);
+int mdio_close(const uint16_t id);
 
-int mdio_debug();
+void mdio_debug();
 #ifdef __cplusplus
 }
 #endif

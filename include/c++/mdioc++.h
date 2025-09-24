@@ -21,7 +21,7 @@ public:
 
     virtual ~MdioDriver();
     
-    int open(const std::string &interface, const int &id);
+    int open(const std::string &interface, const uint16_t &id);
 
     int read(const uint16_t &addr, uint16_t &val);
 
@@ -33,5 +33,5 @@ private:
 
     int _sock = -1;
 
-    int _id = 0;
+    uint16_t _id = 0;
 };
