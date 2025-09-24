@@ -18,6 +18,10 @@
 #include <linux/mii.h>
 #include <linux/sockios.h>
 
+MdioDriver::~MdioDriver() {
+    close();
+}
+
 int MdioDriver::open(const std::string &interface, const uint16_t &id) {
     int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) {
@@ -67,6 +71,10 @@ int MdioDriver::write(const uint16_t &addr, const uint16_t &val) {
 }
 
 int MdioDriver::close() {
+    if (_sock == -1) {
+        return 0;
+    }
+
     int rc = ::close(_sock);
     if (rc == -1) {
         return -errno;

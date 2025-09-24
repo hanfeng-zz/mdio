@@ -26,7 +26,7 @@ public:
     int read(const uint16_t &addr, uint16_t &val);
 
     int write(const uint16_t &addr, const uint16_t &val);
-
+    // auto release file descriptor, also possible to release manually
     int close();
 private:
     std::string _interface {};
