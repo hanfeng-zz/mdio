@@ -7,7 +7,6 @@
  */
 
 #include "mdioc++.h"
-#include "mdiocommon.h"
 #include <sys/ioctl.h>
 #include <sys/queue.h>
 #include <string.h>

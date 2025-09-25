@@ -19,19 +19,19 @@
 #include <linux/mii.h>
 #include <linux/sockios.h>
 
-struct entry {
+struct mdio_entry {
     uint16_t id;
     int sock;
     char interface[50];
-    LIST_ENTRY(entry) entries;
+    LIST_ENTRY(mdio_entry) entries;
 };
 
-LIST_HEAD(list_node, entry);
+LIST_HEAD(list_node, mdio_entry);
 
 struct list_node list_head;
 
-static struct entry *match_id(const int id) {
-    struct entry *node = LIST_FIRST(&list_head);
+static struct mdio_entry *match_id(const int id) {
+    struct mdio_entry *node = LIST_FIRST(&list_head);
     while (NULL != node) {
         if (node->id == id) {
             break;
@@ -41,7 +41,7 @@ static struct entry *match_id(const int id) {
     return node;
 }
 
-static void mdio_free(struct entry *node) {
+static void mdio_free(struct mdio_entry *node) {
     LIST_REMOVE(node, entries);
     free(node);
     node = NULL;
@@ -55,7 +55,7 @@ int mdio_open(const char *const interface, const uint16_t id) {
         return -errno;
     }
 
-    struct entry *node = (struct entry *)calloc(1, sizeof(struct entry));
+    struct mdio_entry *node = (struct mdio_entry *)calloc(1, sizeof(struct mdio_entry));
     if (NULL == node) {
         return -errno;
     }
@@ -69,7 +69,7 @@ int mdio_open(const char *const interface, const uint16_t id) {
 }
 
 int mdio_read(const uint16_t id, const uint16_t addr, uint16_t *val) {
-    struct entry *node = match_id(id);
+    struct mdio_entry *node = match_id(id);
     if (!node) {
         return MDIO_ERR;
     }
@@ -91,7 +91,7 @@ int mdio_read(const uint16_t id, const uint16_t addr, uint16_t *val) {
 }
 
 int mdio_write(const uint16_t id, const uint16_t addr, const uint16_t val) {
-    struct entry *node = match_id(id);
+    struct mdio_entry *node = match_id(id);
     if (!node) {
         return MDIO_ERR;
     }
@@ -113,7 +113,7 @@ int mdio_write(const uint16_t id, const uint16_t addr, const uint16_t val) {
 }
 
 int mdio_close(const uint16_t id) {
-    struct entry *node = match_id(id);
+    struct mdio_entry *node = match_id(id);
     if (node) {
         int rc = close(id);
         if ( rc == -1) {
@@ -125,7 +125,7 @@ int mdio_close(const uint16_t id) {
 }
 
 void mdio_debug() {
-    struct entry *node = LIST_FIRST(&list_head);
+    struct mdio_entry *node = LIST_FIRST(&list_head);
     while (node) {
         printf("interface:%s phyId:%d socket fd:%d\n",
                node->interface,

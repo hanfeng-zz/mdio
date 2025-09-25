@@ -9,5 +9,6 @@
 #ifndef MDIO_COMMON_H
 #define MDIO_COMMON_H
 
-#define MDIO_ERR (-200)
+#define MDIO_ERR            (-200)
+#define MDIO_OVER_LIMIT     (-201)
 #endif //MDIO_COMMON_H

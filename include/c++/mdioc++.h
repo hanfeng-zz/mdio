@@ -5,7 +5,10 @@
  * it under the terms of the GNU General Public License v3.0 or later.
  * See <https://www.gnu.org/licenses/>.
  */
+
+#pragma once
 #include <iostream>
+#include "mdiocommon.h"
 
 class MdioDriver {
 public:
