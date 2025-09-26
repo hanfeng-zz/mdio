@@ -6,9 +6,15 @@
 int main(int argc, char *argv[]) {
 
     char *c = "eth0";
-    uint16_t id = 3;
-    uint16_t val = 0;
+    uint16_t id = 2;
+    uint16_t val = 1;
+    yt8521Driver yt;
 
+    int rc = yt.open(c, id);
+    assert(rc == 0);
+
+    yt.detect();
+#if 0
     int rc = mdio_open(c, id);
     assert(rc == 0);
 
@@ -21,5 +27,6 @@ int main(int argc, char *argv[]) {
     printf("reg:0x1 val:0x%02x\n", val);
 
     mdio_close(id);
+#endif
     return 0;
 }

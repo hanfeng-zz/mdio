@@ -359,9 +359,9 @@ public:
             }
         }
 
-        std::cout << "rgmii rx_clk delay:" << getRgmiiRxDelay(val3) << std::endl;
-        std::cout << "rgmii tx_clk fe delay:" << getRgmiiTxDelayFe(val3) << std::endl;
-        std::cout << "rgmii tx_clk delay:" << getRgmiiTxDelay(val3) << std::endl;
+        std::cout << "rgmii rx_clk delay(ps):" << std::dec << getRgmiiRxDelay(val3) << std::endl;
+        std::cout << "rgmii tx_clk fe delay(ps):" << std::dec << getRgmiiTxDelayFe(val3) << std::endl;
+        std::cout << "rgmii tx_clk delay(ps):" << std::dec << getRgmiiTxDelay(val3) << std::endl;
 
 
     }
